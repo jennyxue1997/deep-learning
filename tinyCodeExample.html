@@ -1,0 +1,45 @@
+<!-- 
+    Changes: 
+    - changed the scalar to 2000 and its multipliers to [2, 4, 6] instead of [1, 2, 3] 
+    - changed title of page to A very fun deepleanjs page
+    - changed result to be 4000, 8000, 12000
+-->
+<html>
+<head>
+    <title>A very fun deepleanjs page</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.11.7"> </script>
+<body>
+    <div style>
+       <p> Open Chrome Developer Tools and look in the Console.  You should see
+        a Float32 arrray produced by multiplying an array by a  scalar.</p>
+    </div>
+
+    <!-- The script below runs a computation using a Tensor data
+    structure from Tensorflow.js.  The computation
+    runs on the computer's GPU (Graphics Processing Unit),
+    which is much faster than running on the CPU.  The speed
+    difference is irrelevant for this tiny example, but will
+    become critical for compute-intense applications like
+    training neural networks. -->
+
+    <script>
+        // The code delimited by the <script> tag is JavaScript.
+        // In general you'll place your JavaScript code in
+        // a separate file from the html, but putting it here as a script simpler for
+        // this tiny exmple.
+        const a = tf.tensor([2, 4, 6]);
+        const b = tf.scalar(2000);
+        const product = a.mul(b);
+	// The dataSunc method waits for the computation to finish
+	// so the console can print the values.
+	const result = product.dataSync();
+        console.log(result);
+        document.write("<p> Test array: " + a);
+        document.write("<p>Test scalar: " + b);
+        document.write("<p>Result: " + result);
+        document.write("<p />The result should be" +        "4000, 8000, 12000");
+        document.write("<p />You should see this result in the console with Chrome Developer Tools");
+    </script>
+</body>
+</html>
