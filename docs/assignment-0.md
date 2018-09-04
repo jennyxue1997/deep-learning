@@ -1,5 +1,0 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>6.S198 Assignment 0</title>
-    </head>
