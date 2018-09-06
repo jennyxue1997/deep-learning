@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+		<title>6.S198 Assignment 1</title>
+    </head>
+
+	<body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+		<h1>
+			6.S198 Assignment 1
+		</h1>
+		<p>
+			Jenny Xue jennyxue@mit.edu
+		</p>
+		<div>
+			<h3>
+                4. Examining the Confidence Levels
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li><b>
+                    Train classes with images of your face and your partner’s face where you show different expressions. 
+                    For example, the first class would be partner A’s face making all sorts of expressions and the second 
+                    class would be partner B’s face making all sorts of expressions. Can the network tell the difference 
+                    between the two faces? If so, how confident is it?
+                </b></li>
+                <ul>
+                    <li>
+                        The network was mostly able to tell the difference between our faces. We tried keeping the 
+                        background the same and staying at a fixed distance from the camera. We each fed the network about 
+                        175 training examples. If we test the network normally (smile at the camera, one person at a time, 
+                        staying about the same distance from camera as training data), the network was able to recognize us 
+                        with 100% confidence. An example of the output is: “Confidence for which the image matches each 
+                        class: 1,0,0” and “Number of the top 20 closest matches in each class: 20,0,0”.
+                    </li>
+                    <li>
+                        However, when we tried tilting our heads, waving at the camera, or zooming in super close to our 
+                        faces, the network had a harder time differentiating between us. The network would output data 
+                        like “Confidence for which the image matches each class: 0.4,0.6,0” and “Number of the top 20 
+                        closest matches in each class: 8,12,0”.
+                    </li>
+                </ul>
+                <div>
+                    <div style="text-align:center">
+                        <img src="assignment-1/confidence-level-4.png" width="600" height="auto"> 
+                        <p><i>
+                            I editted the function so that is uses the Javascript window.alert command to show the same information 
+                            that is printed to the console on each cycle. Pressing the special button will cause the program to pause 
+                            and the user can examine the information in the alert. Processing will resume OK is pressed.
+
+                        </i></p>
+                    </div>
+                    <div style="text-align:center">
+                        <img src="assignment-1/confidence-level-1.png" width="600" height="auto">
+                        <p><i>
+                            This shows the 100% confidence when distinguishing between my partner & my face.
+                        </i></p>
+                    </div>
+                </div>
+                <li><b>
+                    Try training on various inanimate objects or even photos on your phone that you hold up in front of 
+                    the computer camera.
+                </b></li>
+                <ul>
+                    <li>
+                        The network is very good at picking up inanimate objects. In this case I tested with my phone 
+                        and my energy drink. This is expected behavior because the shapes, sizes, and colors of the objects 
+                        are drastically different. I fed the network about 100 training examples for each object, and even 
+                        when I moved the objects around in the frame, the network was able to recognize all the objects 
+                        with almost 100% confidence. An example of the output is: “Confidence for which the image matches 
+                        each class: 1,0,0” and “Number of the top 20 closest matches in each class: 20,0,0”. However, when I 
+                        change the background (show my face in the camera with the drink), the confidence decreases to 99% or lower. 
+
+                    </li>
+                </ul>
+                <div>
+                    <div style="text-align:center">
+                        <img src="assignment-1/confidence-level-2.png" width="600" height="auto"> 
+                        <p><i>
+                            This shows the 100% confidence when recognizing inanimate objects.
+                        </i></p>
+                    </div>
+                </div>
+                <li><b>
+                    Train three different classes with the same image set (for example, your face in a fixed expression).
+                </b></li>
+                <ul>
+                    <li>
+                        The network cannot at pick up different classes with the same image set. After training with the same 
+                        example and feeding it the same facial expression, the network kept bouncing between green, purple, and orange. 
+                        This is probably because the network is attempting to pick up the tiniest differences and movements between the 
+                        input and the training sets. An example of the output is: “Confidence for which the image matches each 
+                        class: 0.3,0.4,0.3” and “Number of the top 20 closest matches in each class: 6,8,6”.
+                    </li>
+                </ul>
+                <div>
+                    <div style="text-align:center">
+                        <img src="assignment-1/confidence-level-3.png" width="600" height="auto"> 
+                        <p><i>
+                            The network constantly alternates between class 1, 2, and 3 when I feed in the same image set for 
+                            all 3 classes.
+                        </i></p>
+                    </div>
+                </div>
+              </ol>
+        </div>
+            
+        <div>
+            <h3>
+                5. Scaling the Confidence Values
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                    Modify the code in WebcamClassifier.js to experiment with different ways of computing confidences, 
+                    such as weighted vs. not weighted.
+                </b></li>
+                <ul>
+                    <li>
+                        I modified the code so that if there is more than 1 unique element in classTopKMap, 
+                        I find the minimum value(s) greater than 0 in classTopKMap and remove them from 
+                        consideration. For example, if there is a list of numbers [1, 3, 0, 12, 1], then the code would determine 
+                        that 1 is the smallest number greater than 0 and return [3, 12]. Then the probability would be calculated 
+                        as 3/15 and 12/15.
+                    </li>
+                </ul>
+                <li><b>
+                    Using your modified confidence calculations, try some of the example scenarios that confused the network, 
+                    that you looked at in section 2 and section 4. Does one of your new methods perform better? 
+                    Why/why not do you think so? Document and turn in the modified and unmodified results for a “confusing” example.
+                </b></li>
+                <ul>
+                    <li>
+                        My new method performed just as well in recognizing inanimate objects. When it came to recognizing 
+                        my partner and my faces, it also did about the same as the previous calculations, but with more confidence. 
+                        This is most likely because removing the minimum value reduces the noise, which increases the confidence. 
+                    </li>
+                </ul>
+                <div>
+                <div style="text-align:center">
+                        <img src="assignment-1/scaling-confidence-intervals.png" width="600" height="auto"> 
+                        <p><i>
+                            Modified code to experiment with different ways of computing confidence.
+                        </i></p>
+                    </div>
+                </div>
+                <li><b>
+                        What are some image classification situations where your alternative ways of confidences might come in useful?
+                </b></li>
+                <ul>
+                    <li>
+                        My alternative way can come in useful when there are a large number classes that have very similar image sets.
+                        This is because by removing the the minimum value(s) I can reduce the noise, which increases the confidence of the 
+                        prediction. 
+                    </li>
+                </ul>
+            </ol>
+        </div>
+
+        <div>
+            <h3>
+                6. Limiting the Number of Training Examples
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                    Once you’ve finished the implementation, explore what happens if the number of training images 
+                    for the classes is severely unbalanced. 
+                </b></li>
+                <ul>
+                    <li>
+                        If the number of training images for the classes is severely unbalanced, then the network is unable to 
+                        accurately recognize objects. Even when I tried training with drastically different objects (2 samples of my face vs. 
+                        50 samples of my phone vs. 3 samples of my face), the network almost always defaulted all inputs to my phone. 
+                        This is also prevelant when I tried training three different classes with the same image set.
+                        I set the MAX_SAMPLE_# to 2, 50, and 3. When I tried inputting the facial expression that only had 3 samples, the network was not 
+                        able to recognize the expression at all.
+                    </li>
+                </ul>
+                <img src="assignment-1/limit-0.png" width="600" height="auto"> 
+                <img src="assignment-1/limit-1.png" width="600" height="auto"> 
+                <div style="text-align:center">
+                    <p><i>
+                        Modified code to limit number of training examples.
+                    </i></p>
+                </div>
+                <div style="text-align:center">
+                    <img src="assignment-1/limit-2.png" width="600" height="auto"> 
+                    <p><i>
+                        When the max number of samples allowed is reached, an error message pops up that says "Sorry, no more samples will be accepted for class [color]. 
+                        Maximum number of samples is [#]."
+                    </i></p>
+                </div>
+                <div style="text-align:center">
+                    <img src="assignment-1/limit-3.png" width="600" height="auto"> 
+                    <p><i>
+                        Note that my face in the same position as the training images but because I have very little samples of the 
+                        training image for class 1 and 3, the network predicts that the input belongs to class 2 (my phone).
+                    </i></p>
+                </div>
+            </ol>
+        </div>
+
+        <div>
+            <h3>
+                7. Further Explorations
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                        Are there specific expressions/images that are intrinsically "more difficult" to train (require more training data) 
+                        compared to others? What are the types of the expressions/images and why do you think this they are more difficult?
+
+                </b></li>
+                <ul>
+                    <li>
+                        Images in drastically different lighting or backgrounds are more difficult to train. In the example below, I trained 
+                        one class with me smiling in bright lighting, and another with me frowning in dark lighting. My intention was to train the 
+                        network so that it recognizes my expression, but unfortunately it ended up picking up the lighting instead. You can see that 
+                        although my input is a picture of me frowning, the network predicted that the input belongs in class 1 (smiling in bright lighting).
+                    </li>
+                </ul>
+            </ol>
+            <div style="text-align:center">
+                <img src="assignment-1/further-explorations.png" width="600" height="auto"> 
+                <p><i>
+                    Training in different lighting.
+                </i></p>
+            </div>
+        </div>
+</html>
