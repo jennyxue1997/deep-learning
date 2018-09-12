@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+		<title>6.S198 Assignment 2</title>
+    </head>
+
+	<body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+		<h1>
+			6.S198 Assignment 2
+		</h1>
+		<p>
+			Jenny Xue jennyxue@mit.edu
+		</p>
+		<div>
+			<h3>
+                1.1) Model Builder (Problem 1)
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li><b>
+                    You should see in the leftmost column of Model Builder that the initial model is marked “Invalid model”. 
+                    Why is the model invalid?
+                </b></li>
+                <ul>
+                    <li>
+                        The model is invalid because the dimensions (shapes) of the layers don't match. The next step, which is flattening
+                        the layer, solves this problem.
+                    </li>
+                </ul>
+                <li><b>
+                    The classifications you are seeing are almost always wrong. Why is this? 
+                    What performance should you expect from this particular network, i.e., how often should you expect it to be correct? 
+                    Is this what you observe?
+
+                </b></li>
+                <ul>
+                    <li>
+                        The classifications that we see is almost always wrong because the model is not yet trained. The probability of this network
+                        being correct is 1/10 because there are 10 digits as options and the network is essentially making a guess. We observe random
+                        classifications but the correctness is not always 10%. 
+                    </li>
+                </ul>
+              </ol>
+        </div>
+            
+        <div>
+            <h3>
+                1.2) Training (Problem 2)
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                        What accuracy do you observe in training MNIST? How many inferences per second does the demo perform? 
+                        How many examples per second does it train? Then try the same thing with Fashion MNIST and document your findings.
+                </b></li>
+                <ul>
+                    <ul>
+                        <li>
+                            After training about 5000 examples for MNIST, we observe a training accuracy of about 75%. The demo performs about 900-1200 inferences a second.
+                            It trains about 905 examples a second. 
+                        </li>
+                        <div style="text-align:center">
+                            <img src="assignment-2/training0.png" width="600" height="auto"> 
+                        </div>
+                        <li>
+                            After training about 5000 Fasion MNIST, we observe a training accuracy of about 73%. The demo performs about 1000-1400 inferences a second.
+                            It trains about 698 examples a second. 
+                        </li>
+                        <div style="text-align:center">
+                            <img src="assignment-2/training1.png" width="600" height="auto"> 
+                        </div>
+                    </ul>
+                </ul>
+                <li><b>
+                    What accuracy do you observe in training CIFAR-10 after letting it train for a minute or two.
+                </b></li>
+                <ul>
+                    <li>
+                        After training about 30000 examples for CIFAR-10, we observe a training accuracy of about 40%. The demo performs about 500-700 inferences a second.
+                        It trains about 765 examples a second. 
+                    </li>
+                </ul>
+                <div style="text-align:center">
+                    <img src="assignment-2/training2.png" width="600" height="auto"> 
+                </div>
+                <li><b>
+                    Back to MNIST. Start training and you should see the accuracy plummet to zero, with terrible results. What’s going on?
+                </b></li>
+                <ul>
+                    <li>
+                        I think this is because there are two linear layers one right after the other. We need to introduce some nonlinearity, 
+                        such as using a ReLU function. In general, cascading any number of linear FC layers is just equivalent to a single linear FC layer.
+
+                    </li>
+                </ul>
+                <div style="text-align:center">
+                    <img src="assignment-2/training3.png" width="600" height="auto"> 
+                </div>
+            </ol>
+        </div>
+
+        <div>
+            <h3>
+                1.4) Activation Layer (Problem 3)
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                    Train the new model. How well does it perform? Then make the first FC model wider by increasing the number of units to 100. Does this make a difference? 
+                </b></li>
+                <ul>
+                    <li>
+                        After training about 6000 examples for MNIST, we observe a training accuracy of about 54%. The demo performs about 1000-1200 inferences a second.
+                        It trains about 500 examples a second. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/activation1.png" width="600" height="auto"> 
+                    </div>
+                </ul>
+
+                <li><b>
+                    Then make the first FC model wider by increasing the number of units to 100. Does this make a difference? 
+                </b></li>
+                <ul>
+                    <li>
+                        After training about 6000 examples for MNIST, we observe a training accuracy of about 78%. The demo performs about 700-1-00 inferences a second.
+                        It trains about 492 examples a second. The model gradually performs better with more training and did better than when the first FC
+                        model was only 10. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/activation2.png" width="600" height="auto"> 
+                    </div>
+                </ul>
+            </ol>
+        </div>
+
+        <div>
+            <h3>
+                1.6) Exploring with Model Builder (Problem 4)
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                        Train your MNIST model with 1,2,3,4, and 5 FC layers, with ReLU between them. For each, use the same hyperparameters, and the same number of 
+                        hidden units (except for the last layer). What were the training times and accuracy? Do you see any overfitting?
+                </b></li>
+                <ul>
+                    <li>
+                        After training about 5000 examples for MNIST model with 1 FC layer, we observe a training accuracy of about 82%. The demo performs about 1000 inferences a second.
+                        It trains about 580 examples a second. 
+                    </li>
+                    <li>
+                        Overfitting rarely happens.
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore0.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(10) -> Softmax -> Label
+                        </i></p>
+                    </div>
+                    <li>
+                        After training about 5000 examples for MNIST model with 2 FC layers, we observe a training accuracy of about 34%. The demo performs about 720 inferences a second.
+                        It trains about 532 examples a second. 
+                    </li>
+                    <li>
+                        Overfitting happens only a couple of times.
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore1.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(10) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p>
+                    </div>
+                    <li>
+                        After training about 5000 examples for MNIST model with 3 FC layers, we observe a training accuracy of about 32%. The demo performs about 650 inferences a second.
+                        It trains about 334 examples a second. 
+                    </li>
+                    <li>
+                        Overfitting happens only a couple of times.
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore2.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(10) -> ReLU -> FC(10) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p>
+                    </div>
+                    <li>
+                        After training about 5000 examples for MNIST model with 4 FC layers, we observe a training accuracy of about 28%. The demo performs about 536 inferences a second.
+                        It trains about 299 examples a second. 
+                    </li>
+                    <li>
+                        Overfitting happens quite a few times. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore3.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(10) -> ReLU -> FC(10) -> ReLU -> FC(10) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p>
+                    </div>
+                    <li>
+                        After training about 5000 examples for MNIST model with 5 FC layers, we observe a training accuracy of about 31%. The demo performs about 456 inferences a second.
+                        It trains about 258 examples a second. 
+                    </li>
+                    <li>
+                        The model constantly overfits.
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore4.png" width="600" height="auto">
+                        <p><i>
+                            Input -> Flatten -> FC(10) -> ReLU -> FC(10) -> ReLU -> FC(10) -> ReLU -> FC(10) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p> 
+                    </div>
+                </ul>
+
+                <li><b>
+                    What can you conclude about how many layers to use?
+                </b></li>
+                <ul>
+                    <li>
+                        Increasing the number of layers slowed down the training speed, but did not make the model more accurate. The model actually overfit more 
+                        as the number of layers increased. The model with only 1 FC layer was actually the most accurate and also had the highest training speed.
+                    </li>
+                </ul>
+
+                <li><b>
+                    Build a model with 3 FC layers, with ReLU between them. Try making the first layer wide and the second narrow, and vice versa, using the same 
+                    hyperparameters as before. Which performs better? Why do you think this is?
+                </b></li>
+                <ul>
+                    <li>
+                        After training about 5000 examples for MNIST model with first layer wide and second layer narrow, we observe a training accuracy of about 48%. The demo performs about 389 inferences a second.
+                        It trains about 363 examples a second. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore5.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(100) -> ReLU -> FC(5) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p> 
+                    </div>
+                    <li>
+                        After training about 5000 examples for MNIST model with first layer narrow and second layer wide, we observe a training accuracy of about 10%. The demo performs about 689 inferences a second.
+                        It trains about 363 examples a second. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore6.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(5) -> ReLU -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p> 
+                    </div>
+                    <li>
+                        The model with a wide first layer and narrow second layer performs better. This is because narrow layer removes information and
+                        once some information is removed it can't be retrieved again.
+                    </li>
+                </ul>
+
+                <li><b>
+                    Try the same experiments with Fashion MNIST and CIFAR-10. Do you get similar results?
+                </b></li>
+                <ul>
+                    <li>
+                        After training about 5000 examples for Fasion MNIST model with first layer wide and second layer narrow, we observe a training accuracy of about 68%. The demo performs about 651 inferences a second.
+                        It trains about 363 examples a second. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore7.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(100) -> ReLU -> FC(5) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p> 
+                    </div>
+
+                    <li>
+                        After training about 5000 examples for Fasion MNIST model with first layer narrow and second layer wide, we observe a training accuracy of about 23%. The demo performs about 757 inferences a second.
+                        It trains about 380 examples a second. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore8.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(5) -> ReLU -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p> 
+                    </div>
+                    <li>
+                        After training about 5000 examples for CIFAR-10 model with first layer wide and second layer narrow, we observe a training accuracy of about 28%. The demo performs about 535 inferences a second.
+                        It trains about 319 examples a second. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore9.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(100) -> ReLU -> FC(5) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p> 
+                    </div>
+                    <li>
+                        After training about 5000 examples for CIFAR-10 model with first layer narrow and second layer wide, we observe a training accuracy of about 23%. The demo performs about 522 inferences a second.
+                        It trains about 337 examples a second. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/explore10.png" width="600" height="auto"> 
+                        <p><i>
+                            Input -> Flatten -> FC(5) -> ReLU -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label
+                        </i></p> 
+                    </div>
+                    <li>
+                        The network gives very similar results with the first layer wide and second layer narrow being be the more accurate model.
+                    </li>
+                </ul>
+                <div>
+                    <h3>
+                        2.1) Multilayer Models (Problem 5)
+                    </h3>
+                </div>
+                <li><b>
+                        Perform some experiments to observe the effect of changing BATCH_SIZE and NUM_BATCHES. What can you say about the effect on the graph of cross entropies (the observed loss)? 
+                        Write a sentence or two describing your observations for your webpage.
+                </b></li>
+                <ul>
+                    <li>
+                        No Change (BATCH_SIZE: 20, NUM_BATCHES: 50): Training Loss 1.93
+                    </li>
+                    <li>
+                        Decrease Batch Size (BATCH_SIZE: 5, NUM_BATCHES: 50): Training Loss 2.05
+                    </li>
+                    <li>
+                        Increase Batch Size (BATCH_SIZE: 50, NUM_BATCHES: 50): Training Loss 1.86
+                    </li>
+                    <li>
+                        Decrease Num Batches (BATCH_SIZE: 20, NUM_BATCHES: 5): Training Loss 2.28
+                    </li>
+                    <li>
+                        Increase Num Batches(BATCH_SIZE: 20, NUM_BATCHES: 100): Training Loss 1.63
+                    </li>
+                    <li>
+                        Increasing the batch size and number of batches seems to decrease the training loss while
+                        decreasing the batch size and number of batches seems to increase the training loss.
+                    </li>
+                </ul>
+                <div>
+                    <h3>
+                        2.2) Training and Testing (Problem 6 & 7)
+                    </h3>
+                </div>
+                <li><b>
+                    Look at some of the testing results and try to find examples of classifications where the system does 
+                    poorly and is even wrong. When you see interesting results, document them on your webpage.
+                </b></li>
+                <ul>
+                    <li>
+                        Thick brush strokes cause the network to perform worse.
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/multilayer0.png" width="100" height="auto"> 
+                        <img src="assignment-2/multilayer1.png" width="100" height="auto">
+                    </div>
+                    <li>
+                        Slanted numbers cause the network to perform worse.
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/multilayer2.png" width="100" height="auto"> 
+                        <img src="assignment-2/multilayer3.png" width="100" height="auto">
+                    </div>
+                    <li>
+                        However, the network still did poorly on "well written" numbers, so there wasn't a distinct
+                        pattern of what numbers were recognizable and what was not. 
+                    </li>
+                    <div style="text-align:center">
+                        <img src="assignment-2/multilayer4.png" width="100" height="auto"> 
+                        <img src="assignment-2/multilayer5.png" width="100" height="auto">
+                    </div>
+                </ul>
+
+                <li><b>
+                    Experiment with changing the batch size and the number of batches to try to improve the testing results. 
+                    Give a brief description of what you tried, and the results.
+                </b></li>
+                <ul>
+                    <li>
+                        BATCH_SIZE: 20, NUM_BATCHES: 50: Last Loss 2.05, Last Accuracy: 30%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 100, NUM_BATCHES: 100: Last Loss 1.60, Last Accuracy: 57%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 100, NUM_BATCHES: 200: Last Loss 1.22, Last Accuracy: 69%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 200, NUM_BATCHES: 100: Last Loss 1.60, Last Accuracy: 61%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 100, NUM_BATCHES: 300: Last Loss 1.03, Last Accuracy: 76%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 100, NUM_BATCHES: 400: Last Loss 0.90, Last Accuracy: 84%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.82, Last Accuracy: 86%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 100, NUM_BATCHES: 600: Last Loss 0.73, Last Accuracy: 81%
+                    </li>
+                    <li>
+                        BATCH_SIZE: 200, NUM_BATCHES: 500: Last Loss 0.87, Last Accuracy: 81%
+                    </li>
+                    <li>
+                        In general, increasing the batch size and number of batches increases the accuracy and decreases
+                        the loss, but increasing them by too much doesn't always work. The best balance that I found was
+                        a batch size of 100 and number of batches is 500, which gives a loss of 0.82 and accuracy of 86%.
+                    </li>
+                </ul>
+                <li><b>
+                    Experiment to see how your new model does and briefly report on the results.
+                </b></li>
+                <ul>
+                    <li><b>
+                        MNIST
+                    </b></li>
+                    <ul>
+                        <li>
+                            <b>Input -> Flatten -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label </b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.73, Last Accuracy: 75%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(100) -> ReLU -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.75, Last Accuracy: 77%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(200) -> ReLU -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.74, Last Accuracy: 71%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(200) -> ReLU -> FC(200) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.71, Last Accuracy: 78%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(200) -> ReLU -> FC(200) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.68, Last Accuracy: 75%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(200) -> ReLU -> FC(200) -> ReLU -> FC(200) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.73, Last Accuracy: 81%
+                            </li></ul>
+                        </li>
+                        <li>
+                            In general, increasing the units in the Fully Connected layer and adding more Fully Connected layers increased the accuracy and
+                            decreased the loss.
+                        </li>
+                        <a href="assignment-2/index_mnist.txt">MNIST Code</a>
+                    </ul>
+
+                    <li><b>
+                        Fasion MNIST
+                    </b></li>
+                    <ul>
+                        <li>
+                            <b>Input -> Flatten -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label </b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.69, Last Accuracy: 86%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(100) -> ReLU -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.61, Last Accuracy: 83%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(100) -> ReLU6 -> FC(100) -> ReLU6 -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.66, Last Accuracy: 84%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(200) -> ReLU -> FC(100) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.57, Last Accuracy: 85%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(200) -> ReLU -> FC(200) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.47, Last Accuracy: 87%
+                            </li></ul>
+                        </li>
+                        <li>
+                            <b>Input -> Flatten -> FC(200) -> ReLU -> FC(200) -> ReLU -> FC(200) -> ReLU -> FC(10) -> Softmax -> Label</b>
+                            <ul><li>
+                            BATCH_SIZE: 100, NUM_BATCHES: 500: Last Loss 0.52, Last Accuracy: 86%
+                            </li></ul>
+                        </li>
+                        <li>
+                            In general, increasing the units in the Fully Connected layer and adding more Fully Connected layers increased the accuracy and
+                            decreased the loss. However, the loss and accuracy couldn't reach the levels of the MNIST images.
+                        </li>
+                        <a href="assignment-2/index_fashion_mnist.txt">Fashion MNIST Code</a>
+                    </ul>
+                </ul>
+            </ol>
+        </div>
+
+        <div>
+            <h3>
+                2.3) Style Transfer Examples
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li>
+                    Neon City 
+                </li>
+                <img src="assignment-2/styletransfer0.jpg" width="600" height="auto"> 
+                <img src="assignment-2/styletransfer1.png" width="600" height="auto">
+                <li>
+                    Arcade
+                </li>
+                <img src="assignment-2/styletransfer3.jpg" width="600" height="auto"> 
+                <img src="assignment-2/styletransfer4.png" width="600" height="auto">
+                <li>
+                    Food
+                </li>
+                <img src="assignment-2/styletransfer5.jpg" width="600" height="auto"> 
+                <img src="assignment-2/styletransfer6.png" width="600" height="auto">
+            </ol>
+        </div>
+
+</html>
