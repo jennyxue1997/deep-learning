@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+		<title>6.S198 Assignment 3</title>
+    </head>
+
+    <body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+		<h1>
+			6.S198 Assignment 3
+		</h1>
+		<p>
+			Jenny Xue jennyxue@mit.edu
+		</p>
+		<div>
+			<h3>
+                1.4) Visualizing Convolutional Neural Networks (Problem 1)
+            </h3>
+
+            <div>
+                <ol>
+                    <li><b>
+                        Create some inputs that look vaguely like digits, but that confuse the network, i.e., where two or 
+                        more of the labels register.  Write up interesting observations about what you see combined with 
+                        illustrative screenshots.
+                    </b></li>
+                    <div style="text-align:center">
+                        <img src="assignment-3/convolution0.png" width="700" height="auto">
+                        <img src="assignment-3/convolution1.png" width="700" height="auto"> 
+                    </div>
+                    <div style="text-align:center">
+                        <img src="assignment-3/convolution2.png" width="700" height="auto"> 
+                    </div>
+                    <ul>
+                        <li>
+                            In this example above, I drew a very sloppy "4" and the network originally recognized it as either an 8 or a 0. 
+                            Adding a dot above the loop increased the chances of the network recognizing it as a 4, but the first guess
+                            is still 9. Adding a second dot above the loop further increased the chances of the network recognizing it as a 4, 
+                            making it the first guess.
+                        </li>
+                    </ul>
+                    <div style="text-align:center">
+                        <img src="assignment-3/convolution3.png" width="700" height="auto"> 
+                        <img src="assignment-3/convolution4.png" width="700" height="auto"> 
+                    </div>
+                    <ul>
+                        <li>
+                            In this example above, I drew a very smiling face and the network originally recognized it as either an 3 or a 0. 
+                            When I added a line and changed the smiling face to a laughing face the network recognized it as a 3 or a 8.
+                        </li>
+                    </ul>
+                </ol>
+            </div>
+        </div>
+
+        <div>
+            <h3>
+                2) Style Transfer Examples
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li>
+                    Neon City 
+                </li>
+                <div style="text-align:center"> 
+                    <img src="assignment-2/styletransfer0.jpg" width="600" height="auto"> 
+                    <img src="assignment-2/styletransfer1.png" width="600" height="auto">
+                </div>
+                <li>
+                    Arcade
+                </li>
+                <div style="text-align:center">
+                    <img src="assignment-2/styletransfer3.jpg" width="600" height="auto"> 
+                    <img src="assignment-2/styletransfer4.png" width="600" height="auto">
+                </div>
+                <li>
+                    Food
+                </li>
+                <div style="text-align:center">
+                    <img src="assignment-2/styletransfer5.jpg" width="600" height="auto"> 
+                    <img src="assignment-2/styletransfer6.png" width="600" height="auto">
+                </div>
+            </ol>
+        </div>
+
+        <div>
+            <h3>
+                3.5) Fast Style Transfer
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li><b>
+                    What happens when you pass an image through the same filter several times? Do you observe any interesting characteristics or padding artifacts?
+                </b></li>
+                <div style="text-align:center"> 
+                    <img src="assignment-3/styletransfer1.jpg" width="600" height="auto"> 
+                    <img src="assignment-3/styletransfer2.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer3.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer4.png" width="600" height="auto">
+                </div>
+                <ul>
+                    <li>
+                        I passed the image of Stata Center through the Style, Udnie, Francis Picabia three times. Each pass removed more details from the original Stata image
+                        and added more style from the style, making the image more "abstract."
+                    </li>
+                </ul>
+                <li><b>
+                    Apply a filter to an image and then apply another filter to that already-filtered image. Is the result similar to what you would get 
+                    when you apply the second filter to the original image?
+                </b></li>
+                <div style="text-align:center"> 
+                    <img src="assignment-3/styletransfer6.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer7.png" width="600" height="auto">
+                </div>
+                <ul>
+                    <li>
+                        The image on the left is the Stata building passed through the style The Scream, Edvard Munch. The image on the right is the Stata building
+                        passed through the Udnie, Francis Picabia -> The Scream, Edvard Munch. In the image on the right we can see that the image perserved some elements 
+                        from the first filter of the Udnie, as seen in the difference in the clouds. 
+                    </li>
+                </ul>
+                <li><b>
+                    Try different combinations of filters and number of times you filter an image. Note on your website if you 
+                    have any interesting observations or insights.
+                </b></li> 
+                <div style="text-align:center"> 
+                    <img src="assignment-3/styletransfer2.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer_2.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer6.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer_1.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer8.png" width="600" height="auto">
+                    <img src="assignment-3/styletransfer9.png" width="600" height="auto">
+                </div>
+                <ul>
+                    <li>
+                        For the trio of photos on the left, I passed the image of Stata through the Udnie, Fracis Picabia -> 
+                        The Scream, Edvard Munch -> The Wave Katsushika Hokusai. For the trio of photos on the right, I passed the images 
+                        through the same style filters but in the reversed order. In the left trio, we can see that the top image had the most 
+                        Stata details preserved but on the right trio, we can see that the bottom image had the most Stata details preserved.
+                        This is because of the order that the image was passed through the style filters. 
+                    </li>
+                </ul>
+            </ol>
+        </div>
+
+        <div>
+            <h3>
+                3.6) Building CNNs
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li><b>
+                    Try changing the learning rate, batch size, and number of batches. Make sure that these numbers are reasonable to start (i.e. won't take too long to run on your computer).
+                </b></li>
+                <ul>
+                    <li>
+                    MNIST
+                    </li>
+                    <ul>
+                        <li>
+                            Batch Size: 100, Num Batches: 100, Learning Rate: 0.15
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch_1.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Batch Size: 50, Num Batches: 150, Learning Rate: 0.1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch_2.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Batch Size: 50, Num Batches: 50, Learning Rate: 0.05
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch_3.png" width="600" height="auto">
+                        </div>
+                    </ul>
+                    <li>
+                        Fashion_MNIST
+                    </li>
+                    <ul>
+                        <li>
+                            Batch Size: 100, Num Batches: 100, Learning Rate: 0.15
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch1.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Batch Size: 50, Num Batches: 150, Learning Rate: 0.1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch3.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Batch Size: 50, Num Batches: 50, Learning Rate: 0.05
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch2.png" width="600" height="auto">
+                        </div>
+                    </ul>
+                    <li>
+                        CIFAR
+                    </li>
+                    <ul>
+                        <li>
+                            Batch Size: 100, Num Batches: 100, Learning Rate: 0.15
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch4.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Batch Size: 50, Num Batches: 150, Learning Rate: 0.1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch5.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Batch Size: 50, Num Batches: 50, Learning Rate: 0.05
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/batch6.png" width="600" height="auto">
+                        </div>
+                    </ul>
+                </ul>
+                <li><b>
+                    Try changing some of the other parameters like field size, filters.
+                </b></li>
+                <ul>
+                    <li>
+                    MNIST
+                    </li>
+                    <ul>
+                        <li>
+                            Filter: 16 & 8, Stride: 1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/filter3.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Filter: 28 & 28, Stride: 1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/filter4.png" width="600" height="auto">
+                        </div>
+                        <li>
+                    </ul>
+                    <li>
+                        Fashion_MNIST
+                    </li>
+                    <ul>
+                        <li>
+                            Filter: 16 & 8, Stride: 1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/filter5.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Filter: 16 & 16, Stride: 1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/filter6.png" width="600" height="auto">
+                        </div>
+                    </ul>
+                    <li>
+                        CIFAR
+                    </li>
+                    <ul>
+                        <li>
+                            Filter: 16 & 8, Stride: 1
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/filter1.png" width="600" height="auto">
+                        </div>
+                        <li>
+                            Filter: 16 & 16, Stride: 2
+                        </li>
+                        <div style="text-align:center"> 
+                            <img src="assignment-3/filter2.png" width="600" height="auto">
+                        </div>
+                    </ul>
+                </ul>
+                <li><b>
+                    Do you have a hypothesis for why CIFAR-10 is so much harder to train on than Fashion MNIST and MNIST (i.e. it’s more difficult to achieve a 90%+ accuracy) while Fashion MNIST has similar 
+                    training times to MNIST (even though Fashion MNIST is more complex than MNIST)?
+                </b></li>
+                <ul>
+                    <li>
+                        One possible reason is that CIFAR-10 has color while Fashion MNIST and MNIST are both black and white. This means that the network has to work with an additional layer of information to 
+                        interpret and parse.
+                    </li>
+                </ul>
+                <li><b>
+                    How does adding more convolutional layers relate to accuracy and training speed? Is there a point at which adding more layers plateaus or even decreases the maximum accuracy you are 
+                    able to achieve with that model?
+                </b></li>
+                <ul>
+                    <li>
+                        Adding more convolutional layers to a certain point helps increases accuracy while decreasing training speed. However, beyond this treshold adding more layers could plateu or even 
+                        decrease the accuracy due to overfitting.
+                    </li>
+                </ul>
+                <li><b>
+                    Challenge: Are you able to find an architecture/combination of techniques that can get you to 60% accuracy on CIFAR-10 within 1 minute of training? 5 minutes? 10 minutes?
+                </b></li>
+                <ul>
+                    <li>
+                       Unfortunately I was unable to find an architecture/combination of techniques that can get me to 60% accuracy. 
+                    </li>
+                </ul>
+                <li><b>
+                    Add code that captures some performance statistic from a testing run. 
+                </b></li>
+                <div style="text-align:center"> 
+                    <img src="assignment-3/test1.png" width="600" height="auto">
+                </div>
+                <li><b>
+                    Add links to your code files on your website.
+                </b></li>
+                <a href="assignment-3/ui.txt">UI Code</a>
+                <a href="assignment-3/index.txt">Index Code</a>
+                
+</html>
