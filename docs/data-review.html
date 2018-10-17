@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+		<title>6.S198 Data review</title>
+    </head>
+
+	<body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+		<h1>
+			6.S198 Data Review
+		</h1>
+		<p>
+			Jenny Xue jennyxue@mit.edu
+        </p>
+        <p>
+			Binh Le binhle@mit.edu
+		</p>
+		<div>
+			<h3>
+                WHAT OUR DATA LOOKS LIKE
+
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li>
+                    In order to make predictions for the 2018 World Championships, we obtained professional match data from the 2016 season up to the 2018 
+                    summer split. After combining the csv files, our data has about 98,208 rows and 98 columns. Each game has 12 rows of data, 
+                    1 row for each role (top, jungle, mid, adc, support) on each of the 2 teams and 1 row for the cumulative statistics for each of 
+                    the 2 teams. That means there over 8,000 games in the dataset. The 98 columns of made up of individual and team statistics such as kills, 
+                    deaths, assists, creep score, baron kills, wards placed, gold differential at 15 minutes, damage to enemy champions, etc. The storage size of the 
+                    data is 63.46 MB.
+
+                    The description of the columns is located <a href="http://oracleselixir.com/match-data/match-data-dictionary/">here</a>.
+
+                </li>
+            </ol>
+        </div>
+
+        <div>
+			<h3>
+                HOW WE OBTAINED THIS DATA
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li>
+                    We obtained the match data csv files from <a href="https://oracleselixir.com/match-data/">Oracle’s Elixir</a>.
+                    Discounting the current 2018 World’s data, the 2016, 2017 match data and 2018 regular season data is stored in four separate csv files. 
+                    This is one of the few sources of professional match data available for public consumption. While there are websites that we can scrape data from 2013 - 2015 from, 
+                    we ultimately decided against it because of the drastic player differences, the formation and disbandment of many teams, the creation and rework of multiple champions, 
+                    and the extreme meta differences.
+
+
+                </li>
+            </ol>
+        </div>
+
+        <div>
+			<h4>
+                LICENSING
+            </h4>
+        </div>
+        
+        <div>
+            <ol>
+                <li>
+                    According to Oracle’s Elixir, “All data […] is provided free of charge, and is intended for use by analysts, commentators, and fans.”
+                </li>
+            </ol>
+        </div>
+
+        <div>
+			<h3>
+                WHY OUR DATA IS GOOD ENOUGH
+
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li>
+                    Our plan is to characterize each team as a vector and within this vector we can also include vectors for each role and player. Therefore, we 
+                    can include detailed team and individual player statistics to feed into our deep neural network. Since our data has just under 100,000 rows and 100 columns, 
+                    there are almost 1 million data points that we can use to quantify team and individual player performance. This should be enough information to input into the deep 
+                    neural network in order to correlate certain metrics and team representations with win probabilities. We also have access to the in-progress 2018 World Championship data that we can 
+                    use for testing in order to analyze the outputs of our trained model. 
+                </li>
+            </ol>
+        </div>
+
+        <div>
+			<h3>
+                PREPROCESSING
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li>
+                    We downloaded the four xlsx files from the Oracle Elixir website then parsed them into csvs. The 2016 data was missing four columns: “csat10,” “csat15,” “csdat10,” and “csdat15,” 
+                    so we added these columns in with NaN for all values. After concatenating the four csv files into one dataframe, we then dropped unnecessary columns from the dataframe, such as “patchno,”
+                    “gameid,” and “game”. Finally, we replaced the erroneous values such as “#DIV/0!” and “#VALUE!” with NaN and exported it back into a csv. 
+                </li>
+            </ol>
+        </div>
+
+        <div>
+			<h3>
+                DATA STORAGE
+            </h3>
+        </div>
+        
+        <div>
+            <ol>
+                <li>
+                    After preprocessing the data, we uploaded it to Google Cloud Storage and created a SQL table with Google BigQuery. BigQuery is Google’s serverless and scalable data warehouse. 
+                    We can then directly query from Google BigQuery with Python.
+                </li>
+            </ol>
+        </div>
+
+</html>
