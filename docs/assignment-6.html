@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+		<title>6.S198 Assignment 6</title>
+    </head>
+
+	<body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+		<h1>
+			6.S198 Assignment 6
+		</h1>
+		<p>
+			Jenny Xue jennyxue@mit.edu
+        </p>
+        
+		<div>
+            <ul>
+                <li><b>
+                    1) What is the reward scheme for FrozenLake?
+                </b></li>
+            </ul>
+
+            <ul>
+                <li>
+                    The reward scheme is 0 for falling and 1 for reaching the goal.
+                </li>
+            </ul>
+
+            <ul>
+                <li><b>
+                    2) How big is the table used for Q-learning above?
+                </b></li>
+            </ul>
+
+            <ul>
+                <li>
+                    Numbers of values in action space x number of values in observation space = 16 * 4 = 64. 
+                </li>
+            </ul>
+
+            <ul>
+                <li><b>
+                    3) Did the rewards improve over time? Why or why not? 
+                </b></li>
+            </ul>
+
+            <ul>
+                <li>
+                    Yes. From the RewardsList we can see that the values are mostly 0.0 in the beginning and became mostly 1.0 towards the end. 
+                </li>
+            </ul>
+
+            <ul>
+                <li><b>
+                    4) In the above code segment, we provided some values for the learning rate and discount factor. 
+                       Try different values for the learning rate. What do you observe?
+                </b></li>
+            </ul>
+
+            <ul>
+                <li>
+                    Lowering the learing rate to 0.1 drastically worsens the result. Increasing the learning rate to 1 also drasticall worsens the result. From testing all learning rates between 0 and 1 in 
+                    intervals of 0.01, I found that 0.68 was the best learning rate with 1474 1.0s. 
+                </li>
+            </ul>
+        </div>
