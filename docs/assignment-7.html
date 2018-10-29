@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <link href="https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c" rel="stylesheet">
+        <script type='text/javascript' src='http://www.midijs.net/lib/midi.js'></script>
+		<title>6.S198 Assignment 7</title>
+    </head>
+
+	<body style="font-family: 'M PLUS Rounded 1c', sans-serif;">
+		<h1>
+			6.S198 Assignment 7
+		</h1>
+		<p>
+			Jenny Xue jennyxue@mit.edu
+		</p>
+		<div>
+			<h3> 
+                1) Understanding LSMs
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                    LSTMs consist of chained, repeating modules. At a high level, what are the two pieces of information that is passed between modules?
+                </b></li>
+                <ul>
+                    <li>
+                        The information that between modules are past outputs and past states. 
+                    </li>
+                </ul>
+                <li><b>
+                    "LSTM" stands for "Long Short Term Memory". The name is a reference to a problem with RNNs that LSTMs are designed to solve. 
+                    What is this problem? At a high level, how do LSTMs attempt to address this problem (what extra information do they add)?
+                </b></li>
+                <ul>
+                    <li>
+                        The problem is that RNNs cannot learn long term dependencies. LSTMs attempt to address this problem by remembering cell state.
+                    </li>
+                </ul>
+                <li><b>
+                    The blog post describes two views of RNN/LSTM architectures. In one of these views, we think of the RNN as being "unrolled" into a chain of repeating modules. 
+                    What values (represented with tensors) are shared between these modules, and what values are different? 
+                </b></li>
+                <ul>
+                    <li>
+                       The values that are shared between these modules are the parameters. The values that are different betweent the modules are the cell states, intermediate inputs, and intermediate outputs. 
+                    </li>
+                </ul>
+                <li><b>
+                    Think about the ranges of the output - what is the property of sigmoid's output range that makes it work for our purpose when we multiply with the current state vector?
+                </b></li>
+                <ul>
+                    <li>
+                        ReLU's output range is between 0 and infinity. We want to use sigmoid's output range because it's between 0 and 1, which means that 0 is forget all while 1 is remember all. 
+                    </li>
+                </ul>
+            </ol>
+        </div>
+
+        <div>
+			<h3> 
+            2) Run the model.
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                    Run the model for 10 to 15 epochs, or until you see interesting results. Pause the model and record the perplexity. Perplexity is a measurement of how well 
+                    the model predicts a sample. A low perplexity indicates that the model is good at making predictions. 
+                </b></li>
+                <div style="text-align:center">
+                    <img src="assignment-7/1.0.png" width="700" height="auto">
+                </div>
+                <li><b>
+                    Try to find a temperature that produces the most natural seeming text, and give some examples of your generated sentence results.
+                </b></li>
+                    <ul>
+                        <li>
+                            Temperature = 0.25: Very repetitive words and sentence structure 
+                        </li>
+                    </ul>
+                    <div style="text-align:center">
+                        <img src="assignment-7/0.25.png" width="700" height="auto">
+                    </div>
+                    <ul>
+                        <li>
+                            Temperature = 0.5: Performed best in terms of less repetitive words and misspellings
+                        </li>
+                    </ul>
+                    <div style="text-align:center">
+                        <img src="assignment-7/0.50.png" width="700" height="auto">
+                    </div>
+                    <ul>
+                        <li>
+                            Temperature = 2.51: No repetitve words, all mispellings
+                        </li>
+                    </ul>
+                    <div style="text-align:center">
+                        <img src="assignment-7/2.51.png" width="700" height="auto">
+                    </div>
+                    <ul>
+                        <li>
+                            Temperature = 7.94: No repetitve words, all mispellings
+                        </li>
+                    </ul>
+                    <div style="text-align:center">
+                        <img src="assignment-7/7.94.png" width="700" height="auto">
+                    </div>
+                <li><b>
+                    Write down any observations about your generated sentence results. Does your text reflect properties of the input sources you used (i.e. vocabulary, sentence length)?
+                </b></li>
+                <ul>
+                    <li>
+                        Yes, the input sources have short words and short sentence structures, just like most of the generated sentence results. 
+                    </li>
+                    <li>
+                        In temperature = 0.25, the generator couldn't close the parenthesis. Whenever "I Will" came up in the middle of the sentence, the "I" has a "(" in front of it.
+                    </li>
+                    <li>
+                        In all argmax, the common theme is "I will".
+                    </li>
+                </ul>
+                <li><b>
+                    Try changing the model parameters and initialization. Record your observations from at least one of these experiments.
+                </b></li>
+                <ul>
+                    <li>
+                        Params: changed "LSTM" to "RNN" and decreased learning rate from "0.01" to "0.005"
+                    </li>
+                </ul>
+                <div style="text-align:center">
+                    <img src="assignment-7/params.png" width="700" height="auto">
+                </div>
+                <ul>
+                    <li>
+                        Temperature = 0.22: Very repeatative
+                    </li>
+                </ul>
+                <div style="text-align:center">
+                    <img src="assignment-7/p0.22.png" width="700" height="auto">
+                </div>
+                <ul>
+                    <li>
+                        Temperature = 0.63: Many misspellings
+                    </li>
+                </ul>
+                <div style="text-align:center">
+                    <img src="assignment-7/p0.63.png" width="700" height="auto">
+                </div>
+                <ul>
+                    <li>
+                        Temperature = 1: Worse than "LSTM" + learning rate = "0.01" with little no correctly spelled words
+                    </li>
+                </ul>
+                <div style="text-align:center">
+                    <img src="assignment-7/p1.png" width="700" height="auto">
+                </div>
+
+        <div>
+			<h3> 
+                3) Music Generation in Tensorflow.
+            </h3>
+        </div>
+
+        <div>
+            <ol>
+                <li><b>
+                    Follow the steps outlined in the notebook. You need to fill out the lines marked #TODO with the appropriate code. 
+                    Once you are finished, upload your solution code file to your website in a way that would allow us to download and run it. Note: You may also need to install matplotlib if it has not already been installed.
+                </b></li>
+                <a href="assignment-7/Music+Generation+with+RNNs.html">Music Generation with RNNs</a>
+                <li><b>
+                    Upload the midi file for your generated music clip to your website!
+                </b></li>
+                <ul>
+                    <li>
+                        Gen seed: 41, Training accuracy: 0.781
+                    </li>
+                </ul>
+                <audio src="assignment-7/song781.mp3" controls preload="auto"></audio>
+                <ul>
+                    <li>
+                        Gen seed: 57, Training accuracy: 0.766 (the beginning actually sounds pretty legit)
+                    </li>
+                </ul>
+                <audio src="assignment-7/song766.mp3" controls preload="auto"></audio>
+        </div>
